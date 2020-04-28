@@ -22,5 +22,8 @@ export const config = {
       "profile": process.env.UDAGRAM_PROD_AWS_PROFILE,
       "media_bucket": process.env.UDAGRAM_PROD_AWS_MEDIA_BUCKET
     }
+  }, 
+  "jwt": {
+    "secret": process.env.UDAGRAM_JWT_SECRET
   }
 }
