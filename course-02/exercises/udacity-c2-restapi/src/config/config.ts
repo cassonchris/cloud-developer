@@ -1,19 +1,29 @@
 export const config = {
   "dev": {
-    "username": "",
-    "password": "",
-    "database": "",
-    "host": "",
-    "dialect": "postgres",
-    "aws_region": "us-east-2",
-    "aws_profile": "default",
-    "aws_media_bucket": "udagram-ruttner-dev"
+    "username": process.env.UDAGRAM_DEV_DB_USERNAME,
+    "password": process.env.UDAGRAM_DEV_DB_PASSWORD,
+    "database": process.env.UDAGRAM_DEV_DB_CATALOG,
+    "host": process.env.UDAGRAM_DEV_DB_HOST,
+    "dialect": process.env.UDAGRAM_DEV_DB_DIALECT,
+    "aws": {
+      "region": process.env.UDAGRAM_DEV_AWS_REGION,
+      "profile": process.env.UDAGRAM_DEV_AWS_PROFILE,
+      "media_bucket": process.env.UDAGRAM_DEV_AWS_MEDIA_BUCKET
+    }
   },
   "prod": {
-    "username": "",
-    "password": "",
-    "database": "udagram_prod",
-    "host": "",
-    "dialect": "postgres"
+    "username": process.env.UDAGRAM_PROD_DB_USERNAME,
+    "password": process.env.UDAGRAM_PROD_DB_PASSWORD,
+    "database": process.env.UDAGRAM_PROD_DB_CATALOG,
+    "host": process.env.UDAGRAM_PROD_DB_HOST,
+    "dialect": process.env.UDAGRAM_PROD_DB_DIALECT,
+    "aws": {
+      "region": process.env.UDAGRAM_PROD_AWS_REGION,
+      "profile": process.env.UDAGRAM_PROD_AWS_PROFILE,
+      "media_bucket": process.env.UDAGRAM_PROD_AWS_MEDIA_BUCKET
+    }
+  }, 
+  "jwt": {
+    "secret": process.env.UDAGRAM_JWT_SECRET
   }
 }
