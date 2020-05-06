@@ -6,11 +6,12 @@
   "scripts": {
     "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -rf www/ || true",
-    "clean-cmd": "if exist www rmdir /Q /S www",
+    "clean": "rm -rf www/",
     "build": "npm run clean && tsc && cp package.json www/package.json && mkdir www/tmp/ && cd www && zip -r Archive.zip . && cd ..",
-    "build-cmd": "npm run clean-cmd && tsc && copy package.json www && mkdir www\\tmp\\ && echo \"tmp cannot be empty\" >> www/tmp/readme.txt && cd www && powershell \"Compress-Archive * Archive.zip\"",
-    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts"
+    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
+    "clean-cmd": "if exist www rmdir /Q /S www",
+    "build-cmd": "npm run clean-cmd && tsc && copy package.json www && mkdir www\\tmp\\ && echo \"tmp cannot be empty\" >> www/tmp/readme.txt && cd www && zip -r Archive.zip . && cd ..",
+    "deploy-dev-cmd": "npm run build-cmd && eb deploy"
   },
   "repository": {
     "type": "git",
