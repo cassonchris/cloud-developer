@@ -6,10 +6,10 @@ import validator from 'validator';
 (async () => {
 
   // Init the Express application
-  const app = express();
+  const app: express.Express = express();
 
   // Set the network port
-  const port = process.env.PORT || 8082;
+  const port: number = +process.env.PORT || 8082;
   
   // Use the body parser middleware for post requests
   app.use(bodyParser.json());
@@ -26,13 +26,13 @@ import validator from 'validator';
   //    image_url: URL of a publicly accessible image
   // RETURNS
   //   the filtered image file
-  app.get("/filteredimage", async ( req, res ) => {
-    const imageUrl = req.query.image_url;
+  app.get("/filteredimage", async ( req: express.Request, res: express.Response ) => {
+    const imageUrl: string = req.query.image_url;
     if (!validator.isURL(imageUrl)) {
       res.status(400).send("image_url is missing or invalid");
     }
 
-    const filteredImagePath = await filterImageFromURL(imageUrl);
+    const filteredImagePath: string = await filterImageFromURL(imageUrl);
 
     res.on("finish", function () {
       deleteLocalFiles([ filteredImagePath ]);
@@ -43,7 +43,7 @@ import validator from 'validator';
   
   // Root Endpoint
   // Displays a simple message to the user
-  app.get( "/", async ( req, res ) => {
+  app.get( "/", async ( req: express.Request, res: express.Response ) => {
     res.send("try GET /filteredimage?image_url={{}}")
   } );
   
